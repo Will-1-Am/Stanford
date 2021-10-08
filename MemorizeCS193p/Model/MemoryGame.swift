@@ -16,12 +16,13 @@ struct MemoryGame<CardContent> {
     // pairs of type integer.  cardContentFactory will take a closure of type
     // integer and return CardContent
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
-        // MARK: - Create an empty of cards
         cards = Array<Card>()
         for pairIndex in 0 ..< numberOfPairsOfCards {
-            // MARK: - What should CardContent be???
-            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
-            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
+            // MARK: - The CardContent type must have to call a function with the
+            // pairIndex to create the two cards in each pair
+            let content = cardContentFactory(pairIndex)
+            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
+            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
         }
     }
 
