@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D4DAFBF2710994C006BD1BF /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DAFBE2710994C006BD1BF /* MemoryGame.swift */; };
+		3D4DAFC22710B60E006BD1BF /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */; };
 		3D502BCD270EE870007932CC /* MemorizeCS193pApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */; };
 		3D502BCF270EE870007932CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502BCE270EE870007932CC /* ContentView.swift */; };
 		3D502BD1270EE879007932CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D502BD0270EE879007932CC /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		3D4DAFBE2710994C006BD1BF /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
+		3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
 		3D502BC9270EE870007932CC /* MemorizeCS193p.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorizeCS193p.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeCS193pApp.swift; sourceTree = "<group>"; };
 		3D502BCE270EE870007932CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */,
 				3D502BCE270EE870007932CC /* ContentView.swift */,
+				3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */,
 				3D4DAFC02710995D006BD1BF /* Model */,
 				3D502BD0270EE879007932CC /* Assets.xcassets */,
 				3D502BD2270EE879007932CC /* Preview Content */,
@@ -151,6 +154,7 @@
 				3D4DAFBF2710994C006BD1BF /* MemoryGame.swift in Sources */,
 				3D502BCF270EE870007932CC /* ContentView.swift in Sources */,
 				3D502BCD270EE870007932CC /* MemorizeCS193pApp.swift in Sources */,
+				3D4DAFC22710B60E006BD1BF /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

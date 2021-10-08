@@ -7,14 +7,24 @@
 
 import Foundation
 
-// MARK: - This model is unaware of the UI and will be somewhat generic in the
-// types of games that can be created with it. The CardContent type will be
-// specified at the time an instance is created.
-
 struct MemoryGame<CardContent> {
     var cards: Array<Card>
     
-    // MARK: - A way of choosing a card is required
+    // MARK: - A MemoryGame wants to be created for a known number of pairs of
+    // cards and then create an array of cards - the deck in other words - from
+    // which to play the game. numberOfPairsOfCards will be the known number of
+    // pairs of type integer.  cardContentFactory will take a closure of type
+    // integer and return CardContent
+    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
+        // MARK: - Create an empty of cards
+        cards = Array<Card>()
+        for pairIndex in 0 ..< numberOfPairsOfCards {
+            // MARK: - What should CardContent be???
+            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
+            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
+        }
+    }
+
     func choose(card: Card) {
         print("User chose card: \(card)")
     }
@@ -22,13 +32,6 @@ struct MemoryGame<CardContent> {
     struct Card {
         var isFaceUp: Bool
         var isMatched: Bool
-        // MARK: - The content on the cards in this game will be emojis, but in
-        // other games might be something else (e.g. images, integers, shapes).
-        // Since, the actual type is unknown now, but will be known at the time
-        // of the actual creation of the game, the MemoryGame declaration needs
-        // to be updated to indicate this synonymous with Array.  When the
-        // MemoryGame declaration is updated the compiler error "Cannot find
-        // type 'CardContent' in scope" will be silenced.
         var content: CardContent
     }
 }
