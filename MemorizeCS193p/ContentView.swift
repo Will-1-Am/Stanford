@@ -9,10 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CardView()
-            .foregroundColor(Color.orange)
-            .padding()
-            .font(Font.largeTitle)
+        return HStack(content: {
+            ForEach(0 ..< 4, content: { index in
+                CardView()
+            })
+        })
+        .foregroundColor(Color.orange)
+        .padding()
+        .font(Font.largeTitle)
     }
 }
 
