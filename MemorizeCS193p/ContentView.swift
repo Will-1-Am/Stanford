@@ -12,7 +12,6 @@ struct ContentView: View {
     
     var body: some View {
         return HStack(content: {
-            // FIXME: - Compiler error: "Referencing initializer 'init(_:content:)' on 'ForEach' requires that 'MemoryGame<String>.Card' conform to 'Identifiable'"
             ForEach(viewModel.cards, content: { card in
                 CardView(card: card)
             })
