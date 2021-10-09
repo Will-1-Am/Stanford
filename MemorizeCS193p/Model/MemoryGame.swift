@@ -21,8 +21,8 @@ struct MemoryGame<CardContent> {
             // MARK: - The CardContent type must have to call a function with the
             // pairIndex to create the two cards in each pair
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
+            cards.append(Card(isFaceUp: false, isMatched: false, content: content, id: pairIndex * 2))
+            cards.append(Card(isFaceUp: false, isMatched: false, content: content, id: pairIndex * 2 + 1))
         }
     }
 
@@ -30,10 +30,11 @@ struct MemoryGame<CardContent> {
         print("User chose card: \(card)")
     }
     
-    struct Card {
+    struct Card: Identifiable {
         var isFaceUp: Bool
         var isMatched: Bool
         var content: CardContent
+        var id: Int
     }
 }
 
