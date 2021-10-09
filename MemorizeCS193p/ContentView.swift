@@ -13,7 +13,9 @@ struct ContentView: View {
     var body: some View {
         return HStack(content: {
             ForEach(viewModel.cards, content: { card in
-                CardView(card: card)
+                CardView(card: card).onTapGesture {
+                    viewModel.choose(card: card)
+                }
             })
         })
         .foregroundColor(Color.orange)
@@ -30,7 +32,7 @@ struct CardView: View {
             if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text("👻")
+                Text(card.content)
             } else {
                 RoundedRectangle(cornerRadius: 10.0)
             }
