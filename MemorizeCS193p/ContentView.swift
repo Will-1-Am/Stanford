@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel: EmojiMemoryGame
+    
     var body: some View {
         return HStack(content: {
             ForEach(0 ..< 4, content: { index in
@@ -43,9 +45,9 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ContentView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.dark)
-            ContentView()
+            ContentView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.light)
         }
     }
