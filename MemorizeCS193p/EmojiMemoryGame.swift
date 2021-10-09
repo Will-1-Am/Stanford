@@ -8,14 +8,15 @@
 import Foundation
 
 class EmojiMemoryGame {
-    // MARK: - Provide ability to create a game from an array of emojis
-    private var model: MemoryGame<String> = createMemoryGame()
+    private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
-    // MARK: - Add a function that will use an array to create the CardContent
-    func createMemoryGame() -> MemoryGame<String> {
-        // MARK: - Make two pairs to start
+    // MARK: - "Cannot use instance member 'createMemoryGame' within property
+    // initializer; property initializers run before 'self' is available"
+    // The above error can be resolved by making createMemoryGame part of the
+    // EmojiMemoryGame type by marking the function as static.
+    static func createMemoryGame() -> MemoryGame<String> {
         let emojis: Array<String> = ["👻", "🎃"]
-        MemoryGame<String>(numberOfPairsOfCards: 2) { pairIndex in
+        return MemoryGame<String>(numberOfPairsOfCards: 2) { pairIndex in
             return emojis[pairIndex]
         }
     }
