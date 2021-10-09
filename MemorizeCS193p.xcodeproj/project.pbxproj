@@ -65,7 +65,7 @@
 			children = (
 				3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */,
 				3D502BCE270EE870007932CC /* ContentView.swift */,
-				3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */,
+				3DAB5F34271208BD005C436E /* ViewModel */,
 				3D4DAFC02710995D006BD1BF /* Model */,
 				3D502BD0270EE879007932CC /* Assets.xcassets */,
 				3D502BD2270EE879007932CC /* Preview Content */,
@@ -79,6 +79,14 @@
 				3D502BD3270EE879007932CC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3DAB5F34271208BD005C436E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
