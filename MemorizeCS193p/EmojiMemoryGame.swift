@@ -6,19 +6,20 @@
 //
 
 import Foundation
-// MARK: - createCardContent fulfills the type requirement of the
-// cardContactFactory (Int) -> CardContent (in this case a String)
-func createCardContent(pairIndex: Int) -> String {
-    return "😀"
-}
 
 class EmojiMemoryGame {
-    // FIXME: - "Class 'EmojiMemoryGame' has no initializers" means there is a
-    // property that doesn't have a way to have a value if the class were to be
-    // instantiated now.
-    // FIX - Assign an instance of the MemoryGame using its initialiser and the
-    // createCardContent function
-    private var model: MemoryGame<String> = MemoryGame<String>(numberOfPairsOfCards: 2, cardContentFactory: createCardContent)
+    private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    
+    // MARK: - "Cannot use instance member 'createMemoryGame' within property
+    // initializer; property initializers run before 'self' is available"
+    // The above error can be resolved by making createMemoryGame part of the
+    // EmojiMemoryGame type by marking the function as static.
+    static func createMemoryGame() -> MemoryGame<String> {
+        let emojis: Array<String> = ["👻", "🎃"]
+        return MemoryGame<String>(numberOfPairsOfCards: 2) { pairIndex in
+            return emojis[pairIndex]
+        }
+    }
     
     // MARK: - Access to the model
     var cards: Array<MemoryGame<String>.Card> {
