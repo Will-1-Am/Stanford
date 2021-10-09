@@ -8,11 +8,17 @@
 import Foundation
 
 class EmojiMemoryGame {
-    // MARK: - Inlining the createCardContent function takes the following form
-    // due to type inference (i.e. the closure parameter and return type are
-    // inferred by Swift).  Additionally, closure parameter can be replaced by
-    // an underscore.
-    private var model: MemoryGame<String> = MemoryGame<String>(numberOfPairsOfCards: 2) { _ in "😀" }
+    // MARK: - Provide ability to create a game from an array of emojis
+    private var model: MemoryGame<String> = createMemoryGame()
+    
+    // MARK: - Add a function that will use an array to create the CardContent
+    func createMemoryGame() -> MemoryGame<String> {
+        // MARK: - Make two pairs to start
+        let emojis: Array<String> = ["👻", "🎃"]
+        MemoryGame<String>(numberOfPairsOfCards: 2) { pairIndex in
+            return emojis[pairIndex]
+        }
+    }
     
     // MARK: - Access to the model
     var cards: Array<MemoryGame<String>.Card> {
