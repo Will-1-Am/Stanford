@@ -12,8 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         return HStack(content: {
-            ForEach(0 ..< 4, content: { index in
-                CardView(isFaceUp: true)
+            // FIXME: - Compiler error: "Referencing initializer 'init(_:content:)' on 'ForEach' requires that 'MemoryGame<String>.Card' conform to 'Identifiable'"
+            ForEach(viewModel.cards, content: { card in
+                CardView(card: card)
             })
         })
         .foregroundColor(Color.orange)
@@ -23,11 +24,11 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var isFaceUp: Bool
+    var card: MemoryGame<String>.Card
     
     var body: some View {
         ZStack {
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
                 Text("👻")
