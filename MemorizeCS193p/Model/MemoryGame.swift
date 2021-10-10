@@ -19,16 +19,19 @@ struct MemoryGame<CardContent> {
         }
     }
 
-    func choose(card: Card) {
+    // MARK: [By default, the properties of a value type can’t be modified from within its instance methods.](https://docs.swift.org/swift-book/LanguageGuide/Methods.html) So, an attempt to
+    // amend the cards array will produce a compiler error "Cannot assign to property: 'self'
+    // is immutable" unless the method is marked mutating
+    mutating func choose(card: Card) {
         let tappedCardIndex: Int = self.index(of: card)
         print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
         cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
     }
     
-    func index(of: Card) -> Int {
+    func index(of tappedCard: Card) -> Int {
         for card in cards {
-            if card.id == of.id {
-                return of.id
+            if card.id == tappedCard.id {
+                return tappedCard.id
             }
         }
         return 0  // FIXME: - Bogus
