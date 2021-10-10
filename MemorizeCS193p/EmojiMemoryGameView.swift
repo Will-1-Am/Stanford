@@ -20,7 +20,6 @@ struct EmojiMemoryGameView: View {
         })
         .foregroundColor(Color.orange)
         .padding()
-        .font(Font.largeTitle)
     }
 }
 
@@ -28,14 +27,17 @@ struct CardView: View {
     var card: MemoryGame<String>.Card
     
     var body: some View {
-        ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text(card.content)
-            } else {
-                RoundedRectangle(cornerRadius: 10.0)
+        GeometryReader { geometry in
+            ZStack {
+                if card.isFaceUp {
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                    Text(card.content)
+                } else {
+                    RoundedRectangle(cornerRadius: 10.0)
+                }
             }
+            .font(.system(size: .minimum(geometry.size.width, geometry.size.height) * 0.75))
         }
     }
 }
@@ -49,6 +51,7 @@ struct EmojiMemoryGameView_Previews: PreviewProvider {
         Group {
             EmojiMemoryGameView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.dark)
+.previewInterfaceOrientation(.portrait)
             EmojiMemoryGameView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.light)
         }
