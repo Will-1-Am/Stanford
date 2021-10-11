@@ -37,6 +37,7 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10.0)
             }
         }
+        .aspectRatio(CGSize(width: 2, height: 3), contentMode: .fit)
     }
 }
 
