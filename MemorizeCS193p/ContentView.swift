@@ -11,13 +11,13 @@ struct ContentView: View {
     var viewModel: EmojiMemoryGame
     
     var body: some View {
-        return HStack(content: {
-            ForEach(viewModel.cards, content: { card in
+        return HStack {
+            ForEach(viewModel.cards) { card in
                 CardView(card: card).onTapGesture {
                     viewModel.choose(card: card)
                 }
-            })
-        })
+            }
+        }
         .foregroundColor(Color.orange)
         .padding()
         .font(Font.largeTitle)
