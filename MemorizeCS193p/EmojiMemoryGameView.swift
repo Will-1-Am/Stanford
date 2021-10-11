@@ -28,17 +28,22 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                if card.isFaceUp {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                    RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-                    Text(card.content)
-                } else {
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                }
-            }
-            .font(.system(size: .minimum(geometry.size.width, geometry.size.height) * fontScaleFactor))
+            // MARK: - GeometryProxy has a CGSize property that can be passed to the body(for:) method where its width and height properties can be used for sizing the font.
+            self.body(for: geometry.size)
         }
+    }
+    
+    func body(for size: CGSize) -> some View {
+        ZStack {
+            if card.isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                Text(card.content)
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius)
+            }
+        }
+        .font(.system(size: .minimum(size.width, size.height) * fontScaleFactor))
     }
     
     // MARK: - Drawing constants
