@@ -28,7 +28,6 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            // MARK: - GeometryProxy has a CGSize property that can be passed to the body(for:) method where its width and height properties can be used for sizing the font.
             self.body(for: geometry.size)
         }
     }
@@ -43,7 +42,12 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
         }
-        .font(.system(size: .minimum(size.width, size.height) * fontScaleFactor))
+        // MARK: - Refactoring the font modifier can be done if the type expected by the system size argument is known - CGFloat from dev docs.
+        .font(.system(size: fontSize(for: size)))
+    }
+    
+    func fontSize(for size: CGSize) -> CGFloat {
+        return .minimum(size.width, size.height) * fontScaleFactor
     }
     
     // MARK: - Drawing constants
