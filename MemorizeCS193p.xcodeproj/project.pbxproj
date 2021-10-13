@@ -13,6 +13,7 @@
 		3D502BCF270EE870007932CC /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502BCE270EE870007932CC /* EmojiMemoryGameView.swift */; };
 		3D502BD1270EE879007932CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D502BD0270EE879007932CC /* Assets.xcassets */; };
 		3D502BD4270EE879007932CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D502BD3270EE879007932CC /* Preview Assets.xcassets */; };
+		3DFD26532716E1E0008E1D6B /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD26522716E1E0008E1D6B /* Grid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		3D502BCE270EE870007932CC /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
 		3D502BD0270EE879007932CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D502BD3270EE879007932CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3DFD26522716E1E0008E1D6B /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			children = (
 				3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */,
 				3D502BCE270EE870007932CC /* EmojiMemoryGameView.swift */,
+				3DFD26522716E1E0008E1D6B /* Grid.swift */,
 				3DAB5F34271208BD005C436E /* ViewModel */,
 				3D4DAFC02710995D006BD1BF /* Model */,
 				3D502BD0270EE879007932CC /* Assets.xcassets */,
@@ -162,6 +165,7 @@
 				3D4DAFBF2710994C006BD1BF /* MemoryGame.swift in Sources */,
 				3D502BCF270EE870007932CC /* EmojiMemoryGameView.swift in Sources */,
 				3D502BCD270EE870007932CC /* MemorizeCS193pApp.swift in Sources */,
+				3DFD26532716E1E0008E1D6B /* Grid.swift in Sources */,
 				3D4DAFC22710B60E006BD1BF /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
