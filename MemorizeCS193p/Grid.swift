@@ -29,12 +29,17 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     }
     
     // MARK: - Positioning each view requires an index value by GridLayout
+    // GridLayout then uses a computed var itemsize to supply a tuple for the
+    // width and height of a frame the view will be contained within.
+    // GridLayout also provides a "location" method for positioning the center
+    // of the view at a specified index
     func body(for item: Item, in layout: GridLayout) -> some View {
         let index = self.index(of: item)
         return self.viewForItem(item)
+            .frame(width: layout.itemSize.width, height: layout.itemSize.height)
+            .position(layout.location(ofItemAt: index))
     }
-    
-    // MARK: - Ensure that the item is actually contained in the items array
+
     func index(of item: Item) -> Int {
         for index in 0 ..< items.count {
             if items[index].id == item.id {
