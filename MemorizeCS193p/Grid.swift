@@ -18,8 +18,6 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            // MARK: - Create a GridLayout using its initialiser amending the
-            // body(for:) and body(for: in:) functions where necessary.
             self.body(for: GridLayout(itemCount: items.count, in: geometry.size))
         }
     }
@@ -30,7 +28,19 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
         }
     }
     
+    // MARK: - Positioning each view requires an index value by GridLayout
     func body(for item: Item, in layout: GridLayout) -> some View {
-        self.viewForItem(item)
+        let index = self.index(of: item)
+        return self.viewForItem(item)
+    }
+    
+    // MARK: - Ensure that the item is actually contained in the items array
+    func index(of item: Item) -> Int {
+        for index in 0 ..< items.count {
+            if items[index].id == item.id {
+                return index
+            }
+        }
+        return 0 // FIXME: - BOGUS!!
     }
 }
