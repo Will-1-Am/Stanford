@@ -22,10 +22,14 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
         }
     }
     
-    // MARK: - Refactor the ForEach frrom the GeometryReader
-    func body(for: CGSize) -> some View {
+    func body(for size: CGSize) -> some View {
         ForEach(items) { item in
-            self.viewForItem(item)
+            self.body(for: item, in: size)
         }
+    }
+    
+    // MARK: - Refactor the body of the ForEach from body(for:)
+    func body(for item: Item, in size: CGSize) -> some View {
+        self.viewForItem(item)
     }
 }
