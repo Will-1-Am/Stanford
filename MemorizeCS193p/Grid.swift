@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Constrain Item to Identifiable and ItemView to View - without those
-// constrains the compiler will display the error "No exact matches in call to
-// initializer" - since Item was essentially pulled out of thin air and it has
-// never been made to conform to Identifiable as required by ForEach.
-// Additionally, the compiler also doesn't know anything about ItemView.
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     var items: [Item]
     var viewForItem: (Item) -> ItemView
@@ -22,8 +17,13 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     }
     
     var body: some View {
-        // MARK: - Create a ForEach view using the items array and return a
-        // view for each item
+        GeometryReader { geometry in
+            self.body(for: geometry.size)
+        }
+    }
+    
+    // MARK: - Refactor the ForEach frrom the GeometryReader
+    func body(for: CGSize) -> some View {
         ForEach(items) { item in
             self.viewForItem(item)
         }
