@@ -7,13 +7,22 @@
 
 import SwiftUI
 
-// MARK: - A Grid of cards, in this case, will be constructed for the UI.
-// The grid struct will be generic so as to cope with other grid content.
 struct Grid: View {
-    // MARK: - The EmojiMemoryGame uses cards - more generically items
+    // MARK: - The "Cannot find type 'Item' in scope" error is flagging that the
+    // compiler doesn't know what an Item is.  The Item type will have to be
+    // specified at the time an instance of the struct is created - in this case
+    // an initialiser can be used
     var items: [Item]
-    // MARK: - For each item a view will be returned
+    
+    // MARK: - The "Cannot find type 'ItemView' in scope" error is just saying
+    // that ItemView is also unknown
     var viewForItem: (Item) -> ItemView
+    
+    // MARK: - While this is generic struct, an array of cards will be the items here
+    init(_ items: [Item], viewForItem: (Item) -> ItemView) {
+        self.items = items
+        self.viewForItem = viewForItem
+    }
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
