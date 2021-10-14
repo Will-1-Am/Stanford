@@ -19,17 +19,18 @@ struct MemoryGame<CardContent> {
         }
     }
 
-    // MARK: - A property for tracking the only face up card in the UI - optional
-    // since there might not have been a card chosen yet (e.g. the game just started).
     var indexOfTheOneAndOnlyFaceUpCard: Int?
     
     mutating func choose(card: Card) {
         // MARK: - tappedCardIndex gets a value only when the first matching
-        // card is found in the cards array. Then it "flips" the card over.  It
-        // is possible that the card is already face up, so this can be prevented
-        // in the optional binding statement. Now, a face up card cannot be
-        // tapped and be shown face down because that would be cheating.
-        if let tappedCardIndex: Int = cards.firstIndex(matching: card), !cards[tappedCardIndex].isFaceUp {
+        // card is found in the cards array and when that card's isFaceUp
+        // property is false. Then it "flips" the tapped card over.  It
+        // is possible that the card could already have been matched. This
+        // condition can also be prevented in the optional binding statement.
+        // This is another cheating preventative.
+        if let tappedCardIndex: Int = cards.firstIndex(matching: card),
+            !cards[tappedCardIndex].isFaceUp,
+            !cards[tappedCardIndex].isMatched {
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
             cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
         }
