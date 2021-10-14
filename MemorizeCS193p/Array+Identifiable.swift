@@ -14,9 +14,6 @@ extension Array where Element: Identifiable {
                 return index
             }
         }
-        // MARK: - Changing the return type to optional (by adding the "?")
-        // permits the use of the default value of an optional type (e.g. nil)
-        // instead of a value known to be incorrect.
         return nil
     }
 }
