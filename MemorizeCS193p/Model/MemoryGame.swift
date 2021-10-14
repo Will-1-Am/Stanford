@@ -19,7 +19,23 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
 
-    var indexOfTheOneAndOnlyFaceUpCard: Int?
+    var indexOfTheOneAndOnlyFaceUpCard: Int? {
+        get {
+            
+        }
+        set {
+            // MARK: - When a value is set for indexOfTheOneAndOnlyFaceUpCard, set
+            // isFaceUp properties corresponding to whether the newValue is = to
+            // the for loop index
+            for index in cards.indices {
+                if index == newValue {
+                    cards[index].isFaceUp = true
+                } else {
+                    cards[index].isFaceUp = false
+                }
+            }
+        }
+    }
     
     mutating func choose(card: Card) {
         if let tappedCardIndex: Int = cards.firstIndex(matching: card),

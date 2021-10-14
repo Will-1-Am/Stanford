@@ -37,7 +37,6 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
-            // MARK: - Prevent matched cards from showing in the grid
             } else if !card.isMatched {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
