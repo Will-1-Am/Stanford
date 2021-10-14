@@ -28,7 +28,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
             if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
                 if cards[tappedCardIndex].content == cards[potentialMatchIndex].content {
-
+                    // MARK: - Mark cards as matched
+                    cards[tappedCardIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
                 }
             }
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
