@@ -22,15 +22,20 @@ struct MemoryGame<CardContent> {
     var indexOfTheOneAndOnlyFaceUpCard: Int?
     
     mutating func choose(card: Card) {
-        // MARK: - tappedCardIndex gets a value only when the first matching
-        // card is found in the cards array and when that card's isFaceUp
-        // property is false. Then it "flips" the tapped card over.  It
-        // is possible that the card could already have been matched. This
-        // condition can also be prevented in the optional binding statement.
-        // This is another cheating preventative.
         if let tappedCardIndex: Int = cards.firstIndex(matching: card),
             !cards[tappedCardIndex].isFaceUp,
             !cards[tappedCardIndex].isMatched {
+            
+            // MARK: - Since we have a card with an index, that isn't already faceUp an isn't matched, lets bind the value of indexOfTheOneAndOnlyFaceUpCard if it
+            // exists to potentialMatchIndex and compare the content values
+            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+                if cards[tappedCardIndex].content == cards[potentialMatchIndex].content {
+                    // MARK: - Attempting to compare the content values of the
+                    // cards will generate an error here ("Binary operator '=='
+                    // cannot be applied to two 'CardContent' operands") since
+                    // CardContent does not conform to Equatable
+                }
+            }
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
             cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
         }
