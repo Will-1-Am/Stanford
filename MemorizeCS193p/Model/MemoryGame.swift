@@ -21,17 +21,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
-            // MARK: - Create an empty array of faceUpCardIndices
             var faceUpCardIndices = Array<Int>()
             
-            // MARK: - Loop over the cards array and find cards that are face up
             for index in cards.indices {
                 if cards[index].isFaceUp {
                     faceUpCardIndices.append(index)
                 }
             }
             
-            // MARK: - If and only if the array length === 1
             if faceUpCardIndices.count == 1 {
                 return faceUpCardIndices.first
             } else {
@@ -59,14 +56,23 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[tappedCardIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                 }
-                indexOfTheOneAndOnlyFaceUpCard = nil
+                // MARK: - The indexOfTheOneAndOnlyFaceUpCard will always know its value so
+                // there is no need to manually set it to nil
+//                indexOfTheOneAndOnlyFaceUpCard = nil
+                
+                cards[tappedCardIndex].isFaceUp = true
             } else {
-                for index in cards.indices {
-                    cards[index].isFaceUp = false
-                }
+// MARK: - This for loop is now redundant with the indexOfTheOneAndOnlyFaceUpCard
+// computed property setter perfoming this task
+//                for index in cards.indices {
+//                    cards[index].isFaceUp = false
+//                }
                 indexOfTheOneAndOnlyFaceUpCard = tappedCardIndex
             }
-            cards[tappedCardIndex].isFaceUp = true
+            // MARK: - Setting this face up value is still required but can be executed
+            // before the else because it is already certain that potentialMatchIndex
+            // has a value.
+//            cards[tappedCardIndex].isFaceUp = true
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
         }
     }
