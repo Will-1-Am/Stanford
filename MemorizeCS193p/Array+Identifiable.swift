@@ -8,12 +8,15 @@
 import Foundation
 
 extension Array where Element: Identifiable {
-    func firstIndex(matching: Element) -> Int {
+    func firstIndex(matching: Element) -> Int? {
         for index in 0 ..< self.count {
             if self[index].id == matching.id {
                 return index
             }
         }
-        return 0 // FIXME: - BOGUS!!
+        // MARK: - Changing the return type to optional (by adding the "?")
+        // permits the use of the default value of an optional type (e.g. nil)
+        // instead of a value known to be incorrect.
+        return nil
     }
 }

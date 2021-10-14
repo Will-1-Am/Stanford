@@ -20,9 +20,13 @@ struct MemoryGame<CardContent> {
     }
 
     mutating func choose(card: Card) {
-        let tappedCardIndex: Int = cards.firstIndex(matching: card)
-        print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
-        cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
+        // MARK: - The value returned from firstIndex(matching:) is optional
+        // meaning that it must be unwrapped prior to use. Here optional binding
+        // is used to unwrap the returned value otherwise the app will do nothing but will not crash.
+        if let tappedCardIndex: Int = cards.firstIndex(matching: card) {
+            print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
+            cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
+        }
     }
     
     struct Card: Identifiable {

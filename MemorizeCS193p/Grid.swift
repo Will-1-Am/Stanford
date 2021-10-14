@@ -29,7 +29,12 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     }
     
     func body(for item: Item, in layout: GridLayout) -> some View {
-        let index = items.firstIndex(matching: item)
+        // MARK: - Prior to using an optional value it must be unwrapped.  Force
+        // unwrapping the value at the point of assigning the value to index,
+        // will mean that it can be used thereafter without unwrapping.  It also
+        // means that the app could crash here, but if it did there would be
+        // more serious issues affecting the app, so force unwrapping should be ok.
+        let index = items.firstIndex(matching: item)!
         return self.viewForItem(item)
             .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             .position(layout.location(ofItemAt: index))
