@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0FED4E2718703A007EB3A1 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FED4D27187039007EB3A1 /* Array+Identifiable.swift */; };
 		3D4DAFBF2710994C006BD1BF /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DAFBE2710994C006BD1BF /* MemoryGame.swift */; };
 		3D4DAFC22710B60E006BD1BF /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */; };
 		3D502BCD270EE870007932CC /* MemorizeCS193pApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502BCC270EE870007932CC /* MemorizeCS193pApp.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0FED4D27187039007EB3A1 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
 		3D4DAFBE2710994C006BD1BF /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		3D4DAFC12710B60E006BD1BF /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
 		3D502BC9270EE870007932CC /* MemorizeCS193p.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorizeCS193p.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 				3D502BCE270EE870007932CC /* EmojiMemoryGameView.swift */,
 				3DFD26522716E1E0008E1D6B /* Grid.swift */,
 				3DFD265427171637008E1D6B /* GridLayout.swift */,
+				3D0FED4D27187039007EB3A1 /* Array+Identifiable.swift */,
 				3DAB5F34271208BD005C436E /* ViewModel */,
 				3D4DAFC02710995D006BD1BF /* Model */,
 				3D502BD0270EE879007932CC /* Assets.xcassets */,
@@ -170,6 +173,7 @@
 				3D502BCD270EE870007932CC /* MemorizeCS193pApp.swift in Sources */,
 				3DFD265527171637008E1D6B /* GridLayout.swift in Sources */,
 				3DFD26532716E1E0008E1D6B /* Grid.swift in Sources */,
+				3D0FED4E2718703A007EB3A1 /* Array+Identifiable.swift in Sources */,
 				3D4DAFC22710B60E006BD1BF /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

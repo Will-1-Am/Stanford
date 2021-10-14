@@ -25,15 +25,6 @@ struct MemoryGame<CardContent> {
         cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
     }
     
-//    func index(of tappedCard: Card) -> Int {
-//        for card in cards {
-//            if card.id == tappedCard.id {
-//                return tappedCard.id
-//            }
-//        }
-//        return 0  // FIXME: - Bogus
-//    }
-    
     struct Card: Identifiable {
         var isFaceUp: Bool = true
         var isMatched: Bool = false
