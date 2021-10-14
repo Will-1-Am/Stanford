@@ -11,7 +11,6 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        // MARK: - A grid will make better use of available space in the UI 
         Grid(viewModel.cards) { card in
             CardView(card: card).onTapGesture {
                 viewModel.choose(card: card)
@@ -38,7 +37,8 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
-            } else {
+            // MARK: - Prevent matched cards from showing in the grid
+            } else if !card.isMatched {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
         }

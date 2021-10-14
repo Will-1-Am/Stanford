@@ -31,22 +31,15 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[tappedCardIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                 }
-                // MARK: - Since a match was found indexOfTheOneAndOnlyFaceUpCard needs resetting
                 indexOfTheOneAndOnlyFaceUpCard = nil
             } else {
-                // MARK: - Turn the cards face down since indexOfTheOneAndOnlyFaceUpCard is nil
                 for index in cards.indices {
                     cards[index].isFaceUp = false
                 }
-                
-                // MARK: - Tell MemoryGame the value for indexOfTheOneAndOnlyFaceUpCard
                 indexOfTheOneAndOnlyFaceUpCard = tappedCardIndex
             }
-            // MARK: - Now turn that tapped card face up
             cards[tappedCardIndex].isFaceUp = true
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
-// MARK: - This line is no longer necessary due to the logic above.
-//            cards[tappedCardIndex].isFaceUp = !cards[tappedCardIndex].isFaceUp
         }
     }
     
