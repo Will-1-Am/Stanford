@@ -21,13 +21,19 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
-            var faceUpCardIndices = Array<Int>()
-            
-            for index in cards.indices {
-                if cards[index].isFaceUp {
-                    faceUpCardIndices.append(index)
-                }
+            let faceUpCardIndices: Array<Int> = cards.indices.filter { index in
+                cards[index].isFaceUp == true
             }
+            
+            // MARK: - The following for loop that is essentially finding all the
+            // indices of the elements that have their isFaceUp property set to
+            // true, can be replaced with the array filter function above. The
+            // filter function returns a new array from the array it filtered.
+//            for index in cards.indices {
+//                if cards[index].isFaceUp {
+//                    faceUpCardIndices.append(index)
+//                }
+//            }
             
             if faceUpCardIndices.count == 1 {
                 return faceUpCardIndices.first
