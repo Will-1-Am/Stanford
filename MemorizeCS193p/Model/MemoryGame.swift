@@ -55,11 +55,3 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var id: Int
     }
 }
-
-extension Array {
-    // MARK: - Create a computed var that counts the elements in an array
-    // returning the first if the count == 1, otherwise nil.
-    var only: Element? {
-        count == 1 ? first : nil
-    }
-}
