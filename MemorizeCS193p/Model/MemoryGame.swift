@@ -21,25 +21,19 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
-            let faceUpCardIndices: Array<Int> = cards.indices.filter { index in
-                cards[index].isFaceUp == true
-            }
+            // MARK: - faceUpCardIndices can be further simplified by removing the index
+            // closure parameter and replacing the element subscript with $0. Additionally,
+            // it is unnecessary to explicitly state the true boolean value as this is inferred.
+            let faceUpCardIndices: [Int] = cards.indices.filter { cards[$0].isFaceUp }
             
-            // MARK: - The following for loop that is essentially finding all the
-            // indices of the elements that have their isFaceUp property set to
-            // true, can be replaced with the array filter function above. The
-            // filter function returns a new array from the array it filtered.
-//            for index in cards.indices {
-//                if cards[index].isFaceUp {
-//                    faceUpCardIndices.append(index)
-//                }
+//            if faceUpCardIndices.count == 1 {
+//                return faceUpCardIndices.first
+//            } else {
+//                return nil
 //            }
             
-            if faceUpCardIndices.count == 1 {
-                return faceUpCardIndices.first
-            } else {
-                return nil
-            }
+            // MARK: - The following ternary expression replaces the if else statement above
+            return faceUpCardIndices.count == 1 ? faceUpCardIndices.first : nil
         }
         set {
             for index in cards.indices {
