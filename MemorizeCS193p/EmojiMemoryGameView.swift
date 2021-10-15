@@ -11,13 +11,12 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        return HStack(content: {
-            ForEach(viewModel.cards, content: { card in
-                CardView(card: card).onTapGesture {
-                    viewModel.choose(card: card)
-                }
-            })
-        })
+        Grid(viewModel.cards) { card in
+            CardView(card: card).onTapGesture {
+                viewModel.choose(card: card)
+            }
+            .padding(5)
+        }
         .foregroundColor(Color.orange)
         .padding()
     }
@@ -38,11 +37,10 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
-            } else {
+            } else if !card.isMatched {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
         }
-        // MARK: - Refactoring the font modifier can be done if the type expected by the system size argument is known - CGFloat from dev docs.
         .font(.system(size: fontSize(for: size)))
     }
     
