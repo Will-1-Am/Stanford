@@ -26,7 +26,12 @@ class EmojiMemoryGame: ObservableObject {
     }
 
     static var themes: Array<Theme> = [
-        Theme()
+        Theme(name: "Halloween", setOfEmoji: ["👻", "🎃", "🌭", "👾", "☠️", "🍎", "🧙‍♀️", "🌛", "👹", "👾", "🎭", "🕷", "⚰️", "👽", "🍬"], numberOfPairsToShow: 6, themeColor: .orange),
+        Theme(name: "Animals", setOfEmoji: ["🐼", "🐔", "🦄", "🐒", "🐰", "🐺"], themeColor: .pink),
+        Theme(name: "Sport", setOfEmoji: ["🏀", "🏈", "⚾", "⚽️", "🎾", "⛷", "⛸", "🏄", "⛳️"], themeColor: .yellow),
+        Theme(name: "Faces", setOfEmoji: ["😀", "😢", "😉"], themeColor: .red),
+        Theme(name: "Travel", setOfEmoji: ["✈️", "🚁", "⛵️", "🚅", "🏍", "🚗", "🚲"], numberOfPairsToShow: 7, themeColor: .blue),
+        Theme(name: "Fruit", setOfEmoji: ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🫐"], numberOfPairsToShow: 9, themeColor: .green)
     ]
     
     // MARK: - Access to the model

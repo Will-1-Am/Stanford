@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Theme {
-    var name: String = "Halloween"
-    var setOfEmoji: [String] = ["👻", "🎃", "🎭"]
-    var numberOfPairsToShow: Int? = 3
-    var themeColor: Color = .orange
+    var name: String
+    var setOfEmoji: [String]
+    var numberOfPairsToShow: Int?
+    var themeColor: Color
 }
