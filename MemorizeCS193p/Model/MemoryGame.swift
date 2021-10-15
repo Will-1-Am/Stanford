@@ -21,19 +21,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
-            // MARK: - faceUpCardIndices can be further simplified by removing the index
-            // closure parameter and replacing the element subscript with $0. Additionally,
-            // it is unnecessary to explicitly state the true boolean value as this is inferred.
-            let faceUpCardIndices: [Int] = cards.indices.filter { cards[$0].isFaceUp }
-            
-//            if faceUpCardIndices.count == 1 {
-//                return faceUpCardIndices.first
-//            } else {
-//                return nil
-//            }
-            
-            // MARK: - The following ternary expression replaces the if else statement above
-            return faceUpCardIndices.count == 1 ? faceUpCardIndices.first : nil
+            cards.indices.filter { cards[$0].isFaceUp }.only
         }
         set {
             for index in cards.indices {
@@ -68,3 +56,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
 }
 
+extension Array {
+    // MARK: - Create a computed var that counts the elements in an array
+    // returning the first if the count == 1, otherwise nil.
+    var only: Element? {
+        count == 1 ? first : nil
+    }
+}
