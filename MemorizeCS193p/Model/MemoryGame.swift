@@ -37,11 +37,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
         set {
             for index in cards.indices {
-                if index == newValue {
-                    cards[index].isFaceUp = true
-                } else {
-                    cards[index].isFaceUp = false
-                }
+                cards[index].isFaceUp = index == newValue
             }
         }
     }
@@ -56,23 +52,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[tappedCardIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                 }
-                // MARK: - The indexOfTheOneAndOnlyFaceUpCard will always know its value so
-                // there is no need to manually set it to nil
-//                indexOfTheOneAndOnlyFaceUpCard = nil
-                
                 cards[tappedCardIndex].isFaceUp = true
             } else {
-// MARK: - This for loop is now redundant with the indexOfTheOneAndOnlyFaceUpCard
-// computed property setter perfoming this task
-//                for index in cards.indices {
-//                    cards[index].isFaceUp = false
-//                }
                 indexOfTheOneAndOnlyFaceUpCard = tappedCardIndex
             }
-            // MARK: - Setting this face up value is still required but can be executed
-            // before the else because it is already certain that potentialMatchIndex
-            // has a value.
-//            cards[tappedCardIndex].isFaceUp = true
             print("User chose card: \(card) and tappedCardIndex is: \(tappedCardIndex)")
         }
     }
