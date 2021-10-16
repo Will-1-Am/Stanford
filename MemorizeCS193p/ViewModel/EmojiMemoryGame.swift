@@ -25,6 +25,12 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
 
+    // MARK: - startNewGame should chose a random theme and create a new game using it
+    func startNewGame() {
+        self.theme = EmojiMemoryGame.themes.randomElement()!
+        self.model = EmojiMemoryGame.createMemoryGame(using: theme)
+    }
+    
     static var themes: Array<Theme> = [
         Theme(name: "Halloween", setOfEmoji: ["👻", "🎃", "🌭", "👾", "☠️", "🍎", "🧙‍♀️", "🌛", "👹", "👾", "🎭", "🕷", "⚰️", "👽", "🍬"], numberOfPairsToShow: 6, themeColor: .orange),
         Theme(name: "Animals", setOfEmoji: ["🐼", "🐔", "🦄", "🐒", "🐰", "🐺"], themeColor: .pink),
