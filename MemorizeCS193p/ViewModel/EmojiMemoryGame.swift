@@ -24,8 +24,7 @@ class EmojiMemoryGame: ObservableObject {
             return emojis[pairIndex]
         }
     }
-
-    // MARK: - startNewGame should chose a random theme and create a new game using it
+    
     func startNewGame() {
         self.theme = EmojiMemoryGame.themes.randomElement()!
         self.model = EmojiMemoryGame.createMemoryGame(using: theme)
