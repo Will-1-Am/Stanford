@@ -44,9 +44,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[tappedCardIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                     
-                    score += 2
+                    computeScore(cardsMatching: true)
                 } else {
-                    score += -1
+                    computeScore(cardsMatching: false)
                 }
                 cards[tappedCardIndex].isFaceUp = true
             } else {
@@ -54,11 +54,16 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
             }
             print("User chose card: \(card), tappedCardIndex is: \(tappedCardIndex) and score is \(score)")
         }
-        
+    }
+
+    mutating func computeScore(cardsMatching: Bool) {
         // Score control panel
         let pointsForMatching: Int = 2
         let pointsForMisMatch: Int = -1
+        
+        score += cardsMatching ? pointsForMatching : pointsForMisMatch
     }
+    
     
     struct Card: Identifiable {
         var isFaceUp: Bool = false
