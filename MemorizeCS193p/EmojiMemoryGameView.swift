@@ -14,6 +14,7 @@ struct EmojiMemoryGameView: View {
         VStack {
             Group {
                 Text(viewModel.theme.name).font(.largeTitle)
+                Text("Score: \(viewModel.score)")
                 Grid(viewModel.cards) { card in
                     CardView(card: card).onTapGesture {
                         viewModel.choose(card: card)
