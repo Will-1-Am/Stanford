@@ -44,24 +44,60 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[tappedCardIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                     
+                    
+                    print("We have a match!")
+                    // MARK - Award points for match and update score
                     computeScore(cardsMatching: true)
                 } else {
-                    computeScore(cardsMatching: false)
+                    // MARK - Add to the timesShown count (new Card property) since the revealed cards didn't match
+                    cards[potentialMatchIndex].timesShown += 1
+                    cards[tappedCardIndex].timesShown += 1
+                    print("No match. Index \(tappedCardIndex) with content \(cards[tappedCardIndex].content) & index \(potentialMatchIndex) with content \(cards[potentialMatchIndex].content) have been shown \(cards[tappedCardIndex].timesShown) and \(cards[potentialMatchIndex].timesShown) time(s) respectively")
+                    
+                    // MARK - Update the score using the indices of the two mismatched cards
+                    computeScore(cardsMatching: false, cardIndex: [tappedCardIndex, potentialMatchIndex])
                 }
                 cards[tappedCardIndex].isFaceUp = true
             } else {
                 indexOfTheOneAndOnlyFaceUpCard = tappedCardIndex
+                print("The one and only face up card has just flipped.")
             }
             print("User chose card: \(card), tappedCardIndex is: \(tappedCardIndex) and score is \(score)")
         }
     }
+    
+    var flippedCards = Array<Int>()
 
-    mutating func computeScore(cardsMatching: Bool) {
+    mutating func computeScore(cardsMatching: Bool, cardIndex: [Int]? = nil) {
         // Score control panel
         let pointsForMatching: Int = 2
-        let pointsForMisMatch: Int = -1
-        
-        score += cardsMatching ? pointsForMatching : pointsForMisMatch
+        let penaltyForMisMatch: Int = -1
+
+        // MARK: - Indices passed in for penalties?
+        if let cardIndex = cardIndex {
+            // MARK: - Add those indices to the flippedCards array
+            for index in cardIndex {
+                flippedCards.append(index)
+            }
+            
+            // MARK: - Loop over the array of indices passed in
+            for index in cardIndex {
+                // MARK: - If the flippedCards array contains each index,
+                if flippedCards.contains(index) {
+                    
+                    // MARK: - Count the occurances of each index in the array
+                    let timesCardShown = flippedCards.indices.filter { flippedCards[$0] == index }.count
+                    
+                    // MARK: - Update the score if the count of each index >= 2 othewise the score is updated with 0 penalty points
+                    score += timesCardShown >= 2 ? timesCardShown * penaltyForMisMatch - 1 : 0
+                    print("penalty points \(timesCardShown * penaltyForMisMatch)")
+                }
+            }
+
+        } else {
+            score += pointsForMatching
+        }
+        print(flippedCards)
     }
     
     
@@ -69,6 +105,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var isFaceUp: Bool = false
         var isMatched: Bool = false
         var content: CardContent
+        // MARK: - timesShown is added to track the number of times a card is shown face up
+        var timesShown: Int = 0
         var id: Int
     }
 }
