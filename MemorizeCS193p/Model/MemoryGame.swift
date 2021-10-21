@@ -11,15 +11,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     var cards: Array<Card>
     
     var score: Int {
-        // MARK: - It made more sense to convert score into a computed property - meaning that the score initialisation was unecessary in the following initialiser, along with the flippedCards array and the computeScore method
         // MARK: - Scoring control panel
         let pointsForMatching: Int = 2
         let penaltyForMisMatch: Int = -1
         
-        // MARK: - Compute the score for matched cards using the filter function - filtering on indices isn't really necessary here, so the expression can be simplified as follows
         let matchingPoints: Int = cards.filter { $0.isMatched }.count / 2 * pointsForMatching
-        
-        // MARK: - Computer the penalty points if any to deduct - the penalty points can be calculated slightly differently: first filter the cards shown multiple times and then calculate penalty to deduct. This simplifies the expression to the following:
         let penaltyPoints: Int = cards.filter { $0.timesShown > 1 }.reduce(0, {$0 + $1.timesShown - 1})
         
         return matchingPoints + (penaltyPoints * penaltyForMisMatch)
