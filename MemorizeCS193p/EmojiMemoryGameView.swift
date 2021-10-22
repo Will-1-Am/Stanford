@@ -56,7 +56,6 @@ struct CardView: View {
         .font(.system(size: fontSize(for: size)))
     }
     
-    // MARK: - The applyGradientWith(color:) method does all the heavy lifting
     func applyGradientWith(_ color: Color) -> LinearGradient {
         let opacity: Double = 0.6
         let gradientColor: Color = color
