@@ -8,18 +8,44 @@
 import Foundation
 
 class EmojiMemoryGame: ObservableObject {
-    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
-    
-    static func createMemoryGame() -> MemoryGame<String> {
-        let emojis: Array<String> = ["👻", "🎃", "🎭"]
-        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { pairIndex in
+    @Published private var model: MemoryGame<String>
+
+    private(set) var theme: Theme
+
+    init() {
+        self.theme = EmojiMemoryGame.themes.first!
+        self.model = EmojiMemoryGame.createMemoryGame(using: theme)
+    }
+
+    static func createMemoryGame(using theme: Theme) -> MemoryGame<String> {
+        let emojis: Array<String> = theme.setOfEmoji
+        let randomNumberOfPairs = Int.random(in: 2 ... emojis.count)
+        return MemoryGame<String>(numberOfPairsOfCards: theme.numberOfPairsToShow ?? randomNumberOfPairs) { pairIndex in
             return emojis[pairIndex]
         }
     }
     
+    func startNewGame() {
+        self.theme = EmojiMemoryGame.themes.randomElement()!
+        self.model = EmojiMemoryGame.createMemoryGame(using: theme)
+    }
+    
+    static var themes: Array<Theme> = [
+        Theme(name: "Halloween", setOfEmoji: ["👻", "🎃", "🌭", "👾", "☠️", "🍎", "🧙‍♀️", "🌛", "👹", "👾", "🎭", "🕷", "⚰️", "👽", "🍬"], numberOfPairsToShow: 6, themeColor: .orange),
+        Theme(name: "Animals", setOfEmoji: ["🐼", "🐔", "🦄", "🐒", "🐰", "🐺"], themeColor: .pink),
+        Theme(name: "Sport", setOfEmoji: ["🏀", "🏈", "⚾", "⚽️", "🎾", "⛷", "⛸", "🏄", "⛳️"], themeColor: .yellow),
+        Theme(name: "Faces", setOfEmoji: ["😀", "😢", "😉"], themeColor: .red),
+        Theme(name: "Travel", setOfEmoji: ["✈️", "🚁", "⛵️", "🚅", "🏍", "🚗", "🚲"], numberOfPairsToShow: 7, themeColor: .blue),
+        Theme(name: "Fruit", setOfEmoji: ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🫐"], numberOfPairsToShow: 9, themeColor: .green)
+    ]
+    
     // MARK: - Access to the model
     var cards: Array<MemoryGame<String>.Card> {
         model.cards
+    }
+    
+    var score: Int {
+        model.score
     }
     
     // MARK: - Intents

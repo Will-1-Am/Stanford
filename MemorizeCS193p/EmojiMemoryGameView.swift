@@ -11,18 +11,30 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        Grid(viewModel.cards) { card in
-            CardView(card: card).onTapGesture {
-                viewModel.choose(card: card)
+        VStack {
+            Group {
+                Text(viewModel.theme.name).font(.largeTitle)
+                Text("Score: \(viewModel.score)")
+                Grid(viewModel.cards) { card in
+                    CardView(viewModel: viewModel, card: card).onTapGesture {
+                        viewModel.choose(card: card)
+                    }
+                    .padding(5)
+                }
+                .padding()
             }
-            .padding(5)
+            .foregroundColor(viewModel.theme.themeColor)
+            
+            Button(action: { viewModel.startNewGame() }) {
+                Text("New Game")
+            }
         }
-        .foregroundColor(Color.orange)
-        .padding()
     }
 }
 
 struct CardView: View {
+    // MARK: - Get access to the theme via the viewModel
+    var viewModel: EmojiMemoryGame
     var card: MemoryGame<String>.Card
     
     var body: some View {
@@ -38,10 +50,20 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
             } else if !card.isMatched {
-                RoundedRectangle(cornerRadius: cornerRadius)
+                RoundedRectangle(cornerRadius: cornerRadius).fill(applyGradientWith(viewModel.theme.themeColor))
             }
         }
         .font(.system(size: fontSize(for: size)))
+    }
+    
+    func applyGradientWith(_ color: Color) -> LinearGradient {
+        let opacity: Double = 0.6
+        let gradientColor: Color = color
+        let gradient: Gradient = Gradient(colors: [gradientColor.opacity(opacity), gradientColor, .white])
+        let startPoint: UnitPoint = .topLeading
+        let endPoint: UnitPoint = .bottomTrailing
+        
+        return LinearGradient(gradient: gradient, startPoint: startPoint, endPoint: endPoint)
     }
     
     func fontSize(for size: CGSize) -> CGFloat {
