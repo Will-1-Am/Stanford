@@ -32,6 +32,12 @@ struct CardView: View {
     }
     
     private func body(for size: CGSize) -> some View {
+        self.front(of: card)
+        .font(.system(size: fontSize(for: size)))
+    }
+    
+    @ViewBuilder
+    private func front(of card: MemoryGame<String>.Card) -> some View {
         ZStack {
             if card.isFaceUp {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
@@ -41,7 +47,6 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
         }
-        .font(.system(size: fontSize(for: size)))
     }
     
     private func fontSize(for size: CGSize) -> CGFloat {
