@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
-    // MARK: - All of the properties and methods are relevant within Grid only
-    // and so are marked private
     private var items: [Item]
     private var viewForItem: (Item) -> ItemView
     

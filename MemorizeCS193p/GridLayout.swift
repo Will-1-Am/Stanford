@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct GridLayout {
-    var size: CGSize
-    var rowCount: Int = 0
-    var columnCount: Int = 0
+    //MARK: - The size, rowCount and columnCount properties need visibility
+    //within GridLayout only and are marked private(set) for that reason
+    private(set) var size: CGSize
+    private(set) var rowCount: Int = 0
+    private(set) var columnCount: Int = 0
     
     init(itemCount: Int, nearAspectRatio desiredAspectRatio: Double = 1, in size: CGSize) {
         self.size = size
@@ -40,6 +42,8 @@ struct GridLayout {
         columnCount = bestLayout.columnCount
     }
     
+    // MARK: - the itemSize property and location method need to be visible
+    // from Grid
     var itemSize: CGSize {
         if rowCount == 0 || columnCount == 0 {
             return CGSize.zero
