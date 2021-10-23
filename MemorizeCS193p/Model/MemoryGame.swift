@@ -8,7 +8,9 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
-    var cards: Array<Card>
+    // MARK: - Add private(set) access control to cards to allow the property to
+    // visible elsewhere but modified only within MemoryGame
+    private(set) var cards: Array<Card>
 
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         cards = Array<Card>()
@@ -19,7 +21,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
 
-    var indexOfTheOneAndOnlyFaceUpCard: Int? {
+    // MARK: - indexOfTheOneAndOnlyFaceUpCard is private to MemoryGame and
+    // should not be visible elsewhere
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
             cards.indices.filter { cards[$0].isFaceUp }.only
         }
