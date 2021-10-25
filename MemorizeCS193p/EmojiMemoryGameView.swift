@@ -51,6 +51,7 @@ struct CardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+            Circle().padding(5).opacity(0.3)
             Text(card.content)
         }
     }
