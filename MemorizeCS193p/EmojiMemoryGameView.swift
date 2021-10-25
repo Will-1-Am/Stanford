@@ -36,7 +36,6 @@ struct CardView: View {
             if card.isFaceUp {
                 self.front(of: card)
             } else if card.isMatched {
-                // MARK: - This condition shows a card face down with opacity after matching
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .opacity(matchedCardOpacity)
             } else {
@@ -73,10 +72,17 @@ struct CardView: View {
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        // MARK: - Creating preview requires an instance of EmojiMemoryGame() as
+        // an argument for the viewModel property
+        let game = EmojiMemoryGame()
+        // MARK: - Now that we have a game a single card can be chosen using the
+        // choose(card:) instance method.
+        game.choose(card: game.cards[0])
+        // MARK: - This single cards remains face-up while changes are applied to the code
+        return Group {
+            EmojiMemoryGameView(viewModel: game)
                 .preferredColorScheme(.dark)
-.previewInterfaceOrientation(.portrait)
+                .previewInterfaceOrientation(.portrait)
             EmojiMemoryGameView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.light)
         }
