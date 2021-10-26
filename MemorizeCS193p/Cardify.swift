@@ -7,11 +7,20 @@
 
 import SwiftUI
 
-// MARK: - Cardify will format the front of the cards
 struct Cardify: ViewModifier {
     
     // MARK: - Conforming to the ViewModifier protocol requires the following body method
+    let isFaceUp: Bool
+    
     func body(content: Content) -> some View {
-        <#code#>
+        ZStack {
+            if isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                content
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius)
+            }
+        }
     }
 }
