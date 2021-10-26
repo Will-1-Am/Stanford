@@ -20,8 +20,6 @@ struct Pie: Shape {
         p.move(to: center)
         p.addLine(to: start)
         p.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
-        
-        // MARK: - Add a line back to the center to complete the pie
         p.addLine(to: center)
         
         return p
