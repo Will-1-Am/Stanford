@@ -50,7 +50,8 @@ struct CardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-            Pie().padding(5).opacity(0.3)
+            // MARK: - Add some arbitrary values to see some pie
+            Pie(startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 210)).padding(5).opacity(0.3)
 //            Text(card.content)
         }
     }
