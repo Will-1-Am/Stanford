@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct Pie: Shape {
-    // MARK: - path(in:) is provided for free to conform to the Shape protocol
+    // MARK: - Pass in start and end angles to draw the arc of the pie
+    var startAngle: Angle
+    var endAngle: Angle
+    
     func path(in rect: CGRect) -> Path {
-        // MARK: - find the center of the rect
         let center = CGPoint(x: rect.midX, y: rect.midY)
-        // MARK: - create a path and move it to the center of the rect
+        // MARK: - Compute the start point - note radius is undefined
+        let start = CGPoint(x: center.x + radius * cos(CGFloat(startAngle.radians)), y: center.y + radius * sin(CGFloat(startAngle.radians)))
         var p = Path()
         p.move(to: center)
+        
+        // MARK: - Add a line from the center to the start point
+        p.addLine(to: start)
         
         return p
     }
