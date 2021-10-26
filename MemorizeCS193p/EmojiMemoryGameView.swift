@@ -50,9 +50,8 @@ struct CardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-            // MARK: - Adjust the angles to acheive the desired effect for 4th quadrant geometry
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-//            Text(card.content)
+            Text(card.content)
         }
     }
     
