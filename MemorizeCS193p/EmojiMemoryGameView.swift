@@ -60,8 +60,6 @@ struct CardView: View {
     }
     
     // MARK: - Drawing constants
-    private let cornerRadius: CGFloat = 10.0
-    private let edgeLineWidth: CGFloat = 3.0
     private let fontScaleFactor: CGFloat = 0.75
     private let matchedCardOpacity: Double = 0.4
 }
