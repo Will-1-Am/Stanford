@@ -50,8 +50,8 @@ struct CardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-            Circle().padding(5).opacity(0.3)
-            Text(card.content)
+            Pie().padding(5).opacity(0.3)
+//            Text(card.content)
         }
     }
     
@@ -72,13 +72,8 @@ struct CardView: View {
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        // MARK: - Creating preview requires an instance of EmojiMemoryGame() as
-        // an argument for the viewModel property
         let game = EmojiMemoryGame()
-        // MARK: - Now that we have a game a single card can be chosen using the
-        // choose(card:) instance method.
         game.choose(card: game.cards[0])
-        // MARK: - This single cards remains face-up while changes are applied to the code
         return Group {
             EmojiMemoryGameView(viewModel: game)
                 .preferredColorScheme(.dark)
