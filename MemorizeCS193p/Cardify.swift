@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct Cardify: ViewModifier {
-    
-    // MARK: - Enable a more possibilities in the UI by using the more
-    // comprehensive card property
     let card: MemoryGame<String>.Card
     
-    func body(content: Content) -> some View {
+    internal func body(content: Content) -> some View {
         ZStack {
             if card.isFaceUp {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
