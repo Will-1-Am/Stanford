@@ -19,6 +19,8 @@ struct Cardify: ViewModifier {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 content
+            } else if card.isMatched {
+                RoundedRectangle(cornerRadius: cornerRadius).opacity(0.3)
             } else {
                 RoundedRectangle(cornerRadius: cornerRadius)
             }
