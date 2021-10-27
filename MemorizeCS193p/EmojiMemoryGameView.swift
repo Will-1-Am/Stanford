@@ -36,10 +36,7 @@ struct CardView: View {
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
             Text(card.content)
         }
-        // MARK: - The entire ZStack is the content for Cardify and so the
-        // extension to View is called on the ZStack
-        // and now the modifier is called in the desired fashion 
-        .cardify(isFaceUp: card.isFaceUp)
+        .cardify(card)
         .font(.system(size: fontSize(for: size)))
     }
     

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct Cardify: ViewModifier {
     
-    // MARK: - Conforming to the ViewModifier protocol requires the following body method
-    let isFaceUp: Bool
+    // MARK: - Enable a more possibilities in the UI by using the more
+    // comprehensive card property
+    let card: MemoryGame<String>.Card
     
     func body(content: Content) -> some View {
         ZStack {
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 content
@@ -30,7 +31,7 @@ struct Cardify: ViewModifier {
 }
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        return self.modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(_ card: MemoryGame<String>.Card) -> some View {
+        return self.modifier(Cardify(card: card))
     }
 }
