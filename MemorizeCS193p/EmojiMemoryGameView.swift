@@ -36,19 +36,12 @@ struct CardView: View {
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
             Text(card.content)
         }
-        .modifier(Cardify(isFaceUp: card.isFaceUp))
+        // MARK: - The entire ZStack is the content for Cardify and so the
+        // extension to View is called on the ZStack
+        // and now the modifier is called in the desired fashion 
+        .cardify(isFaceUp: card.isFaceUp)
         .font(.system(size: fontSize(for: size)))
     }
-    
-//    @ViewBuilder
-//    private func front(of card: MemoryGame<String>.Card) -> some View {
-//        ZStack {
-//            RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-//            RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-//            Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-//            Text(card.content)
-//        }
-//    }
     
     private func fontSize(for size: CGSize) -> CGFloat {
         return .minimum(size.width, size.height) * fontScaleFactor
