@@ -31,27 +31,22 @@ struct CardView: View {
         }
     }
     
-    func body(for size: CGSize) -> some View {
+    private func body(for size: CGSize) -> some View {
         ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-                Text(card.content)
-            } else if !card.isMatched {
-                RoundedRectangle(cornerRadius: cornerRadius)
-            }
+            Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
+            Text(card.content)
         }
+        .cardify(card)
         .font(.system(size: fontSize(for: size)))
     }
     
-    func fontSize(for size: CGSize) -> CGFloat {
+    private func fontSize(for size: CGSize) -> CGFloat {
         return .minimum(size.width, size.height) * fontScaleFactor
     }
     
     // MARK: - Drawing constants
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3.0
-    let fontScaleFactor: CGFloat = 0.75
+    private let fontScaleFactor: CGFloat = 0.75
+    private let matchedCardOpacity: Double = 0.4
 }
 
 
@@ -60,10 +55,12 @@ struct CardView: View {
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards[0])
+        return Group {
+            EmojiMemoryGameView(viewModel: game)
                 .preferredColorScheme(.dark)
-.previewInterfaceOrientation(.portrait)
+                .previewInterfaceOrientation(.portrait)
             EmojiMemoryGameView(viewModel: EmojiMemoryGame())
                 .preferredColorScheme(.light)
         }
