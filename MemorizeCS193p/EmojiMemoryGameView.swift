@@ -34,7 +34,11 @@ struct CardView: View {
     private func body(for size: CGSize) -> some View {
         ZStack {
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-            Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 180 : 0))
+            Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
+            // MARK: - Prior to iOS15 the animation modifier could be written like so
+//                .animation(Animation.linear(duration: 3))
+            // MARK: - iOS15 has deprecated the above and now must be written something like the following
+                .animation(Animation.linear(duration: 3), value: card.isMatched)
         }
         .cardify(card)
         .font(.system(size: fontSize(for: size)))
