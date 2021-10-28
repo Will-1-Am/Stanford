@@ -34,7 +34,7 @@ struct CardView: View {
     private func body(for size: CGSize) -> some View {
         ZStack {
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-            Text(card.content)
+            Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 180 : 0))
         }
         .cardify(card)
         .font(.system(size: fontSize(for: size)))
