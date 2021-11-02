@@ -35,6 +35,7 @@ struct CardView: View {
         ZStack {
             Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
             Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
+                // MARK: - autoreverses will reverse the direction of animation when a limit is reached.
                 .animation(Animation.linear(duration: 3).repeatForever(autoreverses: true), value: card.isMatched)
         }
         .cardify(card)
