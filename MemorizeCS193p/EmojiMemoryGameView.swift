@@ -23,8 +23,8 @@ struct EmojiMemoryGameView: View {
             .padding()
             
             Button {
-                withAnimation(.easeInOut) {
-                viewModel.resetGame() }
+                withAnimation(.easeInOut(duration: 2)) {
+                    viewModel.resetGame() }
             } label: {
                 Text("New Game")
             }
