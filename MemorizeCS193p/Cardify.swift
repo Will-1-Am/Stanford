@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct Cardify: ViewModifier {
+    // MARK: - To differentiate between matched and unmatched cards get the
+    // property value
+//    var isFaceUp: Bool
+//    var isMatched: Bool
+    
+    // MARK: - To comprehensively differentiate between cards get the card
+    // property value
     let card: MemoryGame<String>.Card
     
     internal func body(content: Content) -> some View {
