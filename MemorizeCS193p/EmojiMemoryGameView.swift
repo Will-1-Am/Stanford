@@ -43,14 +43,17 @@ struct CardView: View {
         }
     }
     
+    @ViewBuilder
     private func body(for size: CGSize) -> some View {
-        ZStack {
-            Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-            Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))            
-                .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
+                Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
+                    .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
+            }
+            .cardify(card)
+            .font(.system(size: fontSize(for: size)))
         }
-        .cardify(card)
-        .font(.system(size: fontSize(for: size)))
     }
     
     private func fontSize(for size: CGSize) -> CGFloat {
