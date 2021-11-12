@@ -53,10 +53,8 @@ struct CardView: View {
                     .rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
                     .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
             }
-            .cardify(card)
+            .cardify(isFaceUp: card.isFaceUp)
             .transition(AnyTransition.scale)
-            // MARK: - Flip a card over
-            .rotation3DEffect(Angle.degrees(card.isFaceUp ? 0 : 180), axis: (x: 0, y: 1, z: 0))
         }
     }
     
