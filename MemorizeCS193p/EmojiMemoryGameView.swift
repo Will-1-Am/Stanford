@@ -16,7 +16,7 @@ struct EmojiMemoryGameView: View {
             Grid(viewModel.cards) { card in
                 CardView(card: card).onTapGesture {
                     withAnimation(.linear(duration: 2)) {
-                        viewModel.choose(card: card) 
+                        self.viewModel.choose(card: card)
                     }
                 }
                 .padding(5)
@@ -26,7 +26,7 @@ struct EmojiMemoryGameView: View {
             
             Button {
                 withAnimation(.easeInOut(duration: 2)) {
-                    viewModel.resetGame() }
+                    self.viewModel.resetGame() }
             } label: {
                 Text("New Game")
             }
@@ -48,11 +48,15 @@ struct CardView: View {
         if card.isFaceUp || !card.isMatched {
             ZStack {
                 Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-                Text(card.content).rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
+                Text(card.content)
+                    .font(.system(size: fontSize(for: size)))
+                    .rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
                     .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
             }
             .cardify(card)
-            .font(.system(size: fontSize(for: size)))
+            // MARK: - After cards are matched and a new card is selected,
+            // scale the matched cards to infinitely small
+            .transition(AnyTransition.scale)
         }
     }
     
@@ -64,8 +68,6 @@ struct CardView: View {
     private let fontScaleFactor: CGFloat = 0.75
     private let matchedCardOpacity: Double = 0.4
 }
-
-
 
 
 
