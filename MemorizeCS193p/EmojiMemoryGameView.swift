@@ -54,9 +54,9 @@ struct CardView: View {
                     .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
             }
             .cardify(card)
-            // MARK: - After cards are matched and a new card is selected,
-            // scale the matched cards to infinitely small
             .transition(AnyTransition.scale)
+            // MARK: - Flip a card over
+            .rotation3DEffect(Angle.degrees(card.isFaceUp ? 0 : 180), axis: (x: 0, y: 1, z: 0))
         }
     }
     
