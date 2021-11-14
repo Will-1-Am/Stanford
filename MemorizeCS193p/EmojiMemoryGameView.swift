@@ -11,14 +11,26 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        Grid(viewModel.cards) { card in
-            CardView(card: card).onTapGesture {
-                viewModel.choose(card: card)
+        // MARK: - Make room for a button to start a new game
+        VStack {
+            Grid(viewModel.cards) { card in
+                CardView(card: card).onTapGesture {
+                    withAnimation(.linear(duration: 2)) {
+                        self.viewModel.choose(card: card)
+                    }
+                }
+                .padding(5)
             }
-            .padding(5)
+            .foregroundColor(Color.orange)
+            .padding()
+            
+            Button {
+                withAnimation(.easeInOut(duration: 2)) {
+                    self.viewModel.resetGame() }
+            } label: {
+                Text("New Game")
+            }
         }
-        .foregroundColor(Color.orange)
-        .padding()
     }
 }
 
@@ -31,13 +43,19 @@ struct CardView: View {
         }
     }
     
+    @ViewBuilder
     private func body(for size: CGSize) -> some View {
-        ZStack {
-            Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
-            Text(card.content)
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 70 - 90), clockwise: true).padding(5).opacity(0.3)
+                Text(card.content)
+                    .font(.system(size: fontSize(for: size)))
+                    .rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
+                    .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: card.isMatched == true)
+            }
+            .cardify(isFaceUp: card.isFaceUp)
+            .transition(AnyTransition.scale)
         }
-        .cardify(card)
-        .font(.system(size: fontSize(for: size)))
     }
     
     private func fontSize(for size: CGSize) -> CGFloat {
@@ -48,8 +66,6 @@ struct CardView: View {
     private let fontScaleFactor: CGFloat = 0.75
     private let matchedCardOpacity: Double = 0.4
 }
-
-
 
 
 

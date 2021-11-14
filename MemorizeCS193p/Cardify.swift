@@ -7,21 +7,37 @@
 
 import SwiftUI
 
-struct Cardify: ViewModifier {
-    let card: MemoryGame<String>.Card
+struct Cardify: AnimatableModifier {
+    var rotation: Double
+    
+    init(isFaceUp: Bool) {
+        self.rotation = isFaceUp ? 0 : 180
+    }
+    
+    var isFaceUp: Bool {
+        rotation < 90
+    }
+    
+    var animatableData: Double {
+        get {
+            return rotation
+        }
+        set {
+            rotation = newValue
+        }
+    }
     
     internal func body(content: Content) -> some View {
         ZStack {
-            if card.isFaceUp {
+            if isFaceUp {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 content
-            } else if card.isMatched {
-                RoundedRectangle(cornerRadius: cornerRadius).opacity(0.3)
             } else {
-                RoundedRectangle(cornerRadius: cornerRadius)
+                RoundedRectangle(cornerRadius: cornerRadius).fill() //.opacity(card.isMatched ? 0.3 : 1)
             }
         }
+        .rotation3DEffect(Angle.degrees(rotation), axis: (0, 1, 0))
     }
     
     // MARK: - Drawing constants
@@ -30,7 +46,7 @@ struct Cardify: ViewModifier {
 }
 
 extension View {
-    func cardify(_ card: MemoryGame<String>.Card) -> some View {
-        return self.modifier(Cardify(card: card))
+    func cardify(isFaceUp: Bool) -> some View {
+        return self.modifier(Cardify(isFaceUp: isFaceUp))
     }
 }
