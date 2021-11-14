@@ -7,29 +7,24 @@
 
 import SwiftUI
 
-struct Cardify: ViewModifier {
-    // MARK: - To differentiate between matched and unmatched cards get the
-    // property value
-//    var isFaceUp: Bool
-//    var isMatched: Bool
+struct Cardify: AnimatableModifier {
+    var rotation: Double
     
-//    // MARK: - To comprehensively differentiate between cards get the card
-//    // property value
-//    let card: MemoryGame<String>.Card
-    
-    // MARK: - Track the rotation of a card for the content to be shown appropriately;
-    let rotation: Double
-    
-    // MARK: - Initialise Cardify with a value for isFaceUp
-    // to be supplied by CardView in this case; This boolean will provide a value for rotation;
     init(isFaceUp: Bool) {
         self.rotation = isFaceUp ? 0 : 180
     }
     
-    // MARK: - Now isFaceUp becomes a function of a card's rotation
-    // < 90 == true > 90 is false
     var isFaceUp: Bool {
         rotation < 90
+    }
+    
+    var animatableData: Double {
+        get {
+            return rotation
+        }
+        set {
+            rotation = newValue
+        }
     }
     
     internal func body(content: Content) -> some View {
